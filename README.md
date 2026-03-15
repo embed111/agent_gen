@@ -2,7 +2,8 @@
 
 ## 目录结构
 
-- `agent.md`：Agent 生成主规范（配置驱动规则）
+- `AGENTS.md`：Agent 生成主规范（配置驱动规则）
+- `.codex/`：OpenClaw 风格记忆层（只记录生成经验、稳定约束、失败模式）
 - `config.yaml`：主配置文件（可调参数面板）
 - `agent_principles.yaml`：生成原则统一配置（人机可读）
 - `docs/agent_framework.md`：框架设计说明（不执行生成）

@@ -9,7 +9,7 @@ from workspace_compliance_checker import (
 
 
 REQUIRED_WORKSPACE_FILES = (
-    "agent.md",
+    "AGENTS.md",
     "docs/agent_framework.md",
     "docs/config_dashboard.md",
     "templates/framework.template.yaml",

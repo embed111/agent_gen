@@ -1,0 +1,10 @@
+﻿{
+    "created_at_utc":  "2026-03-14T03:12:00.8341538Z",
+    "root":  "D:\\code\\AI\\J-Agents\\agent_gen",
+    "test_root":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test",
+    "session_id":  "20260314-111200-829",
+    "session_path":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111200-829",
+    "logs_path":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111200-829\\logs",
+    "tmp_path":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111200-829\\tmp",
+    "artifacts_path":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111200-829\\artifacts"
+}

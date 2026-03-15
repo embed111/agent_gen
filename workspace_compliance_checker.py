@@ -28,7 +28,7 @@ class ComplianceResult:
 
 
 REQUIRED_FILES = (
-    "agent.md",
+    "AGENTS.md",
     "agent_principles.yaml",
     "config.yaml",
     "docs/agent_framework.md",

@@ -1,0 +1,1 @@
+﻿python workspace_compliance_checker.py --workspace . --report reports/workspace_compliance.md --json-report reports/workspace_compliance.json

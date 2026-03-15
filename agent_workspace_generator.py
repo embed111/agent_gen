@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 WORKSPACE_FILES_TO_COPY = (
-    "agent.md",
+    "AGENTS.md",
     "agent_principles.yaml",
     "config.yaml",
     "README.md",

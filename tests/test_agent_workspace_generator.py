@@ -19,7 +19,7 @@ class AgentWorkspaceGeneratorTests(unittest.TestCase):
         generate_agent_workspace(self.target_workspace)
 
         expected_files = (
-            "agent.md",
+            "AGENTS.md",
             "agent_principles.yaml",
             "config.yaml",
             "README.md",
@@ -54,7 +54,7 @@ class AgentWorkspaceGeneratorTests(unittest.TestCase):
         (self.target_workspace / "custom.txt").write_text("x", encoding="utf-8")
 
         generate_agent_workspace(self.target_workspace, overwrite=True)
-        self.assertTrue((self.target_workspace / "agent.md").is_file())
+        self.assertTrue((self.target_workspace / "AGENTS.md").is_file())
 
 
 if __name__ == "__main__":

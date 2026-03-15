@@ -7,7 +7,7 @@ meta:
   version: "1.0.0"
   language: zh-CN
   source_of_truth:
-    - agent.md
+    - AGENTS.md
     - config.yaml
   mode: design_only
   execute_generation: false

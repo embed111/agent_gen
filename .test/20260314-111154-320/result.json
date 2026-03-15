@@ -1,0 +1,22 @@
+﻿{
+    "session_id":  "20260314-111154-320",
+    "status":  "PASS",
+    "started_at_utc":  "2026-03-14T03:11:54.3584938Z",
+    "finished_at_utc":  "2026-03-14T03:11:54.5303705Z",
+    "duration_ms":  172,
+    "exit_code":  0,
+    "command":  "python workspace_compliance_checker.py --workspace . --report reports/workspace_compliance.md --json-report reports/workspace_compliance.json",
+    "workspace_root":  "D:\\code\\AI\\J-Agents\\agent_gen",
+    "session_path":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111154-320",
+    "logs_path":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111154-320\\logs",
+    "tmp_path":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111154-320\\tmp",
+    "artifacts_path":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111154-320\\artifacts",
+    "run_log":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111154-320\\logs\\test-run.log",
+    "report_path":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111154-320\\report.md",
+    "report_json":  "D:\\code\\AI\\J-Agents\\agent_gen\\.test\\20260314-111154-320\\report.json",
+    "tmp_file_count":  0,
+    "tmp_total_bytes":  0,
+    "artifact_file_count":  0,
+    "artifact_total_bytes":  0,
+    "log_total_bytes":  285
+}

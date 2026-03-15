@@ -1,12 +1,12 @@
 # Workspace Compliance Report
 
-- Workspace: `C:\work\agents\agent_gen`
-- Checked At (UTC): `2026-02-09T07:48:56+00:00`
+- Workspace: `D:\code\AI\J-Agents\agent_gen`
+- Checked At (UTC): `2026-03-14T03:11:54+00:00`
 - Status: `PASS`
 - Summary: `22/22` checks passed
 
 ## Check Details
-- [PASS] `required_file:agent.md` - 存在必需文件 `agent.md` - 文件存在: agent.md
+- [PASS] `required_file:AGENTS.md` - 存在必需文件 `AGENTS.md` - 文件存在: AGENTS.md
 - [PASS] `required_file:agent_principles.yaml` - 存在必需文件 `agent_principles.yaml` - 文件存在: agent_principles.yaml
 - [PASS] `required_file:config.yaml` - 存在必需文件 `config.yaml` - 文件存在: config.yaml
 - [PASS] `required_file:docs/agent_framework.md` - 存在必需文件 `docs/agent_framework.md` - 文件存在: docs/agent_framework.md

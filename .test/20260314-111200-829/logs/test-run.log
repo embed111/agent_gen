@@ -1,0 +1,5 @@
+﻿[2026-03-14T11:12:00] Running command: python -m unittest -q tests.test_workspace_compliance_checker tests.test_agent_workspace_generator
+----------------------------------------------------------------------
+Ran 8 tests in 0.067s
+System.Management.Automation.RemoteException
+OK

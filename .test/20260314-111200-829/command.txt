@@ -1,0 +1,1 @@
+﻿python -m unittest -q tests.test_workspace_compliance_checker tests.test_agent_workspace_generator

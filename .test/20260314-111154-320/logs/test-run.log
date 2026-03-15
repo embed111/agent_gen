@@ -1,0 +1,2 @@
+﻿[2026-03-14T11:11:54] Running command: python workspace_compliance_checker.py --workspace . --report reports/workspace_compliance.md --json-report reports/workspace_compliance.json
+[PASS] workspace=D:\code\AI\J-Agents\agent_gen passed=22/22 report=reports\workspace_compliance.md
