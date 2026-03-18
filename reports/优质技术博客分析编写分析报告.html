@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>优质技术博客分析编写分析报告</title>
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --paper: #fffaf4;
+      --ink: #1f2937;
+      --muted: #5b6470;
+      --line: #d9c9b5;
+      --accent: #0f766e;
+      --accent-soft: #d7efe9;
+      --warm: #9a3412;
+      --shadow: 0 18px 45px rgba(72, 47, 23, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(154, 52, 18, 0.12), transparent 30%),
+        linear-gradient(180deg, #f8f3ec 0%, var(--bg) 100%);
+      line-height: 1.75;
+    }
+
+    .page {
+      width: min(1080px, calc(100% - 32px));
+      margin: 32px auto 56px;
+    }
+
+    .hero,
+    .section,
+    .callout {
+      background: var(--paper);
+      border: 1px solid rgba(217, 201, 181, 0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 38px 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -110px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(15, 118, 110, 0.22), transparent 72%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Georgia", "Noto Serif SC", serif;
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: #14213d;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 48px);
+      margin-top: 18px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 840px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .meta-item {
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(217, 201, 181, 0.9);
+      border-radius: 14px;
+    }
+
+    .meta-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--warm);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .section {
+      margin-top: 22px;
+      padding: 28px 32px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .card {
+      padding: 18px 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 14px 22px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 15px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 14px 15px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8efe3;
+      color: #5f2f14;
+    }
+
+    code,
+    pre {
+      font-family: "Consolas", "Courier New", monospace;
+    }
+
+    code {
+      background: #f2f5f7;
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: #0f3d53;
+    }
+
+    pre {
+      margin: 14px 0;
+      padding: 18px;
+      overflow: auto;
+      background: #17212b;
+      color: #eff7ff;
+      border-radius: 16px;
+      line-height: 1.6;
+    }
+
+    .callout {
+      margin-top: 22px;
+      padding: 22px 24px;
+      border-left: 6px solid var(--accent);
+    }
+
+    .quote {
+      font-size: 21px;
+      font-family: "Georgia", "Noto Serif SC", serif;
+      color: #244552;
+      margin-bottom: 10px;
+    }
+
+    .checklist li::marker {
+      color: var(--accent);
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 20px, 1080px);
+        margin-top: 18px;
+      }
+
+      .hero,
+      .section,
+      .callout {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <span class="eyebrow">Technical Writing Analysis</span>
+      <h1>如何写一篇优质的技术博客：以 OpenClaw 使用为例</h1>
+      <p class="lead">
+        优质技术博客不是“把功能说明写长”，而是围绕一个真实问题，向一类明确读者交付可复现、可验证、可迁移的解决过程。
+        以本仓库中的 OpenClaw 工作区治理为例，最适合写成的问题驱动型实战文章，而不是抽象概念介绍。
+      </p>
+      <div class="meta">
+        <div class="meta-item">
+          <strong>目标读者</strong>
+          需要在 Agent 工作区落地 OpenClaw 工作方式的工程人员、维护者、Owner
+        </div>
+        <div class="meta-item">
+          <strong>推荐文章类型</strong>
+          实战拆解 + 设计决策 + 验证闭环
+        </div>
+        <div class="meta-item">
+          <strong>核心结论</strong>
+          文章必须回答“为什么要做、具体怎么做、如何确认做对了”
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>一、什么叫“优质”的技术博客</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3>1. 问题足够具体</h3>
+          <p>优质文章先限定场景，再给方案。不要上来就讲体系和哲学，要先说明读者到底遇到了什么阻塞。</p>
+          <p>在 OpenClaw 示例里，真正的问题不是“什么是记忆层”，而是“如何在不破坏现有生成链路的前提下，为工作区补齐 OpenClaw 风格记忆层”。</p>
+        </article>
+        <article class="card">
+          <h3>2. 读者边界清晰</h3>
+          <p>优质文章只服务一类主读者。你写给执行维护者，就不需要把内容扩展成面向产品经理的价值宣讲。</p>
+          <p>OpenClaw 例文的主读者应是需要修改工作区、运行检查器、完成治理落地的人。</p>
+        </article>
+        <article class="card">
+          <h3>3. 步骤可以复现</h3>
+          <p>文章中的命令、文件路径、验证方法、风险边界都应可执行。没有复现路径的文章，阅读时感觉“懂了”，落地时仍然会卡住。</p>
+        </article>
+        <article class="card">
+          <h3>4. 决策理由讲清楚</h3>
+          <p>只列步骤还不够。优质文章会解释为什么采用当前方案，而不是另外一种做法，这决定了文章是否具有迁移价值。</p>
+        </article>
+        <article class="card">
+          <h3>5. 结果必须有证据</h3>
+          <p>技术博客的说服力来自“结果 + 证据”。截图、检查结果、测试命令、改造前后对比都属于证据。</p>
+        </article>
+        <article class="card">
+          <h3>6. 限制与失败模式可见</h3>
+          <p>优质文章不会只展示顺利路径，还会说明哪些地方不能做、为什么不能做，以及失败时如何回退或降级。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>二、写作时应该采用的结构</h2>
+      <p>针对技术主题，最稳定的结构不是“概念列表”，而是“背景 → 痛点 → 目标 → 约束 → 实施 → 验证 → 复盘”。这套结构特别适合 OpenClaw 这样的工作流治理主题。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>段落目标</th>
+            <th>必须回答的问题</th>
+            <th>OpenClaw 示例写法</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>背景</td>
+            <td>原有系统处于什么状态，为什么值得改</td>
+            <td>说明 <code>agent_gen</code> 已有配置驱动生成链路，但缺少 OpenClaw 风格 <code>.codex/</code> 记忆层</td>
+          </tr>
+          <tr>
+            <td>痛点</td>
+            <td>读者不做这件事会遇到什么成本</td>
+            <td>近期策略难恢复、稳定约束难沉淀、目录边界容易被破坏</td>
+          </tr>
+          <tr>
+            <td>目标与边界</td>
+            <td>这篇文章解决什么，不解决什么</td>
+            <td>解决记忆层补齐与读取顺序治理；不重构配置模型和生成脚本</td>
+          </tr>
+          <tr>
+            <td>实施过程</td>
+            <td>具体怎么做，按什么顺序做</td>
+            <td>创建 <code>.codex</code> 核心文件、更新 <code>AGENTS.md</code>、运行最小回归</td>
+          </tr>
+          <tr>
+            <td>验证结果</td>
+            <td>如何证明方案有效</td>
+            <td>展示工作区合规检查与测试通过结果，给出命令和结果摘要</td>
+          </tr>
+          <tr>
+            <td>复盘</td>
+            <td>这个方案适用于哪些场景，不适用于哪些场景</td>
+            <td>适用于工作区治理与经验沉淀，不适合扩展为无边界的知识库堆积</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>三、为什么 OpenClaw 适合作为优质技术博客示例</h2>
+      <p>OpenClaw 在这个仓库里的使用方式具备一篇优质技术博客最需要的四个元素：真实问题、明确边界、可执行步骤、可验证结果。</p>
+      <div class="grid two">
+        <article class="card">
+          <h3>真实问题</h3>
+          <p>工作区需要补齐本地记忆层，但不能破坏既有生成、测试和目录职责。这个问题天然具有工程价值，而不是为了展示概念而造的案例。</p>
+        </article>
+        <article class="card">
+          <h3>明确边界</h3>
+          <p>需求文档清楚规定了当前工作区、只允许修改本目录、正式报告不能写入 <code>.codex/</code> 等限制条件，方便写出“为什么这样做”的部分。</p>
+        </article>
+        <article class="card">
+          <h3>可执行步骤</h3>
+          <p>从创建 <code>.codex/SOUL.md</code> 到更新 <code>AGENTS.md</code> 再到运行检查器，路径清楚，动作明确，很容易形成分步骤正文。</p>
+        </article>
+        <article class="card">
+          <h3>可验证结果</h3>
+          <p>仓库里已经存在检查命令与测试命令，天然适合作为文章中的“证据层”。这会显著提高博客的可信度。</p>
+        </article>
+      </div>
+      <div class="callout">
+        <div class="quote">如果你的文章能够让读者在读完后独立完成一次 OpenClaw 工作区治理，那么它就已经接近优质技术博客的标准。</div>
+        <p>反过来说，如果文章只介绍了“OpenClaw 是什么”却没有给出约束、步骤和验证，它更像宣传页，而不是技术博客。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>四、以 OpenClaw 使用为例，应该怎样写这篇文章</h2>
+      <h3>推荐标题</h3>
+      <p><strong>主标题：</strong>在不破坏生成链路的前提下，为 Agent 工作区补齐 OpenClaw 记忆层</p>
+      <p><strong>副标题：</strong>以 <code>agent_gen</code> 为例拆解工作区边界、实施步骤与验证方法</p>
+
+      <h3>推荐摘要</h3>
+      <p>这篇文章应在开头直接告诉读者：本文演示如何在一个已有生成链路的 Agent 工作区中落地 OpenClaw 风格治理，包括补齐 <code>.codex/</code> 记忆层、更新启动读取顺序、保持正式报告目录职责不变，并通过工作区合规检查和单元测试验证改造结果。</p>
+
+      <h3>推荐正文骨架</h3>
+      <ol>
+        <li>定义问题：说明 <code>agent_gen</code> 已具备配置驱动生成流程，但缺少可持续恢复近期策略与失败模式的本地记忆层。</li>
+        <li>说明目标：明确本次目标是补齐 OpenClaw 风格 <code>.codex/</code> 记忆层，并维持既有目录职责与生成链路不回退。</li>
+        <li>列出边界：只修改当前工作区；正式报告继续留在 <code>reports/</code>；不重构配置模型和生成脚本。</li>
+        <li>展开步骤：创建核心记忆文件、更新 <code>AGENTS.md</code> 读取顺序、保留 <code>docs/</code> 和 <code>tests/</code> 既有职责。</li>
+        <li>展示验证：运行工作区合规检查和最小回归测试，给出命令与结果摘要。</li>
+        <li>总结价值：说明 OpenClaw 的收益不在于“多一个目录”，而在于让经验和边界可持续复用。</li>
+      </ol>
+
+      <h3>推荐证据素材</h3>
+      <ul>
+        <li><code>AGENTS.md</code> 中关于读取顺序与目录边界的要求。</li>
+        <li><code>.codex/SOUL.md</code>、<code>.codex/USER.md</code>、<code>.codex/MEMORY.md</code> 的职责说明。</li>
+        <li><code>workspace_compliance_checker.py</code> 的运行命令与检查通过结果。</li>
+        <li><code>python -m unittest -q tests.test_workspace_compliance_checker tests.test_agent_workspace_generator</code> 的最小回归结果。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>五、示例文章最值得写好的三个段落</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3>1. 开篇问题段</h3>
+          <p>开篇必须让读者立即理解“为什么值得继续看”。最有效的方式是写出改造前状态、实际风险和本次目标，而不是先讲术语定义。</p>
+          <pre><code>在 agent_gen 工作区中，配置驱动生成流程已经稳定，但本地缺少 OpenClaw 风格记忆层。
+这会导致近期生成策略、稳定约束和失败模式难以沉淀，也容易让正式报告与经验记录混写到错误目录。
+本文以一次真实整改为例，演示如何在不破坏现有生成链路的前提下补齐 .codex/ 记忆层并完成最小回归验证。</code></pre>
+        </article>
+        <article class="card">
+          <h3>2. 实施步骤段</h3>
+          <p>步骤段要像操作说明，但不能只有动作，还要解释动作背后的设计约束。</p>
+          <pre><code>第一步不是直接写文档，而是先确定目录边界：本轮只允许修改当前工作区，正式报告继续写入 reports/。
+在此基础上补齐 .codex/SOUL.md、.codex/USER.md、.codex/MEMORY.md 等核心记忆文件，
+再更新 AGENTS.md 的读取顺序，确保执行者开工时能够先读取身份、用户、近期记忆和主会话记忆。</code></pre>
+        </article>
+        <article class="card">
+          <h3>3. 验证收尾段</h3>
+          <p>好文章的结尾不是“到这里就完成了”，而是“如何证明已经完成”。</p>
+          <pre><code>改造完成后，需要运行工作区合规检查器并执行最小回归测试。
+如果检查通过，说明目录边界、记忆层结构和生成链路均未被破坏；如果失败，则应回到对应检查项定位问题，而不是继续堆砌文档说明。
+这一步决定了文章是否真正具备工程可信度。</code></pre>
+        </article>
+        <article class="card">
+          <h3>写法判断标准</h3>
+          <ul class="checklist">
+            <li>每个段落是否都在解决读者的一个具体疑问。</li>
+            <li>每个命令、路径、规则是否都解释了用途。</li>
+            <li>是否写出了限制条件和禁止事项。</li>
+            <li>是否有实际验证而不是口头确认。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>六、优质技术博客常见失分点</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>失分点</th>
+            <th>表现</th>
+            <th>修正方法</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>只有功能介绍，没有问题场景</td>
+            <td>整篇文章都在说 OpenClaw 有哪些文件，却没说为什么需要这些文件</td>
+            <td>先写改造前状态、风险和目标，再进入文件说明</td>
+          </tr>
+          <tr>
+            <td>只有步骤，没有设计理由</td>
+            <td>读者知道怎么做，但不知道为什么不能把正式报告写进 <code>.codex/</code></td>
+            <td>为每个关键动作补上约束来源与收益解释</td>
+          </tr>
+          <tr>
+            <td>没有验证闭环</td>
+            <td>文章结束于“修改完成”，没有检查结果</td>
+            <td>加入命令、检查项和最小回归结果</td>
+          </tr>
+          <tr>
+            <td>视角过宽</td>
+            <td>从工作区治理一路扩展到所有 Agent 理论</td>
+            <td>只围绕一次真实 OpenClaw 落地案例展开</td>
+          </tr>
+          <tr>
+            <td>把文档写成流水账</td>
+            <td>只记录执行顺序，不提取可复用原则</td>
+            <td>在结尾提炼“背景-边界-步骤-验证”的通用写作模板</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>七、可直接复用的写作清单</h2>
+      <ol class="checklist">
+        <li>先用一句话定义读者和问题，不要先定义概念。</li>
+        <li>把“本次要做什么”和“本次不做什么”同时写出来。</li>
+        <li>正文结构按“背景、痛点、目标、边界、步骤、验证、复盘”组织。</li>
+        <li>每个步骤都给出动作、原因、风险三项信息。</li>
+        <li>至少放一组命令、路径或文件名，确保读者可以照着执行。</li>
+        <li>至少放一组验证结果，确保读者知道怎么确认成功。</li>
+        <li>明确失败模式和禁止事项，避免文章只展示顺利路径。</li>
+        <li>结尾提炼出可以迁移到其他工作区或其他技术主题的方法论。</li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <h2>八、结论</h2>
+      <p>写一篇优质的技术博客，本质上是在交付一份“可信的工程说明”。以 OpenClaw 使用为例，最好的写法不是罗列目录和文件，而是围绕一次真实工作区治理案例，讲清楚问题、边界、实施、验证和复盘。</p>
+      <p>如果这篇文章最终能让读者回答以下三个问题，它就具备较高质量：为什么要引入 OpenClaw；在当前工作区里应该怎么引入；怎样确认引入后没有破坏现有链路。只要这三个问题被答透，文章就会同时具备阅读价值、操作价值和迁移价值。</p>
+      <p class="footer-note">建议在正式发布时补充实际命令输出截图、改造前后目录对比，以及一段“失败案例与修复路径”，这样文章会更接近一线工程实践文档的水准。</p>
+    </section>
+  </main>
+</body>
+</html>
